@@ -86,32 +86,48 @@ SIDE BUTTON
 /* ================================================================
 GALLERY
 =================================================================== */
-.left-gallery {
-    width: 100%;
-	height: 90vh;
+.gallery-container {
+	width: 60vw;
+	height: 82vh;
+	position: relative;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: flex-start;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 0 100px;
+	margin-bottom: 80px;
 }
-.left-gallery-container {
-	width: 100%;
-	height: 80vh;
-	padding: 0 3rem;
-	overflow: scroll;
-}
-.sort {
-	width: 100%;
+
+/* ---------------------
+画像一覧
+----------------------- */
+.gallery-grid {
+	width: 60vw;
 	height: auto;
-	padding: 2.5rem 0;
+	position: relative;
+	top: 0;
+	left: 0;
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(32%, 1fr));	
 }
 
 /*---------------------
 並び替えボタンのCSS
 -----------------------*/
-.sort-btn{
+.filter-container {
+	width: 60vw;
+	height: 18vh;
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	height: auto;
+	align-items: center;
 }
-.sort-btn li {
+.filter-buttons {
+	display: flex;
+}
+.filter-buttons li button {
 	background-color: var(--base-color);
     list-style: none;
 	border-radius: 10rem;
@@ -121,145 +137,447 @@ GALLERY
 	margin: 0 1rem;
 	font: var(--main-font);
     font-size: 0.8rem;
+	letter-spacing: 0.2rem;
 }
-.sort-btn li:hover {
+.filter-buttons li button:hover {
     background-color: var(--accent-color);
 	border: 1px solid var(--accent-color);
 	color: var(--base-color);
     transition: all .3s;
 }
-.sort-btn li.active{
-	/*ボタンに現在地＝activeというクラス名がついたら背景色を変更*/
+.filter-buttons li button.active{
 	background-color: var(--accent-color);
 	border: 1px solid var(--accent-color);
     color: var(--base-color);
 }
 
-/*----------------------
-横幅が480px以下になった際の指定
-------------------------*/
-@media only screen and (max-width: 480px) {
-    .sort-btn{
-		padding: 0;
-		display: flex;
-		flex-wrap: wrap; 
-    }
-    .sort-btn li{
-        width: 20%;
-        margin: 0.5rem;
-        text-align: center;
-		padding: 0.3rem;
-		font-size: 0.8rem;
-    }
-	.left-gallery-container {
-		height: 50vh;
-		padding: 0;
-	}
-}
 
-
-/*----------------------
-Muuriのレイアウトのための調整 
--------------------------*/
-.grid {
-    position: relative;
-}
-.item {
-    display: block;
-    position: absolute;
-    width: 33%;
-    padding: 1rem;
+/* ================================================================
+THUMBNAIL
+=================================================================== */
+.muuri-item {
+	position: absolute;
+	display: block;
+    width: 30%;
+    margin: 8px;
     z-index: 1;
 }
+.muuri-item.muuri-hidden {
+    display: none;
+}
 
-.item-content {
-	/*内側のボックスの高さが崩れないように維持*/
-    position: relative;
-    width: 100%;
-    height: 100%;
+/* ---------------------
+共通
+--------------------- */
+.muuri-item-thumb {
+	position: relative;
+	top: 0;
+    left: 0;
+	width: 100%;
+	height: 190px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	object-fit: cover;
+	border-radius: 20px;
 }
-.grid img{
-	width:100%;
-	/*画像の横幅を100%にしてレスポンシブ化*/
-	height:auto;
-	vertical-align: bottom;
-}
-.grid img:hover {
-	transition: all .3s;
+/* サムネイルをホバーした時に拡大して表示 */
+.muuri-item:hover .muuri-item-thumb {
 	transform: scale(1.1);
 }
 
-/*---------------------
-横幅が768px以下になった際の指定
------------------------*/
-@media only screen and (max-width: 768px) {
-.item {
-    width: 49.5%;
-}
-}
 
-/*--------------------
-fancyboxサムネイル背景と画像選択時の枠線の指定
----------------------*/
-.fancybox-thumbs {
-    background: transparent!important;
+/* ---------------------
+カテゴリー
+--------------------- */
+.muuri-item-category {
+	background-color: var(--main-color);
+	cursor: default;
 }
-
-.fancybox-thumbs__list a:before {
-    border: 6px solid #FA999B;
+.muuri-item-category-text {
+	background-color: var(--main-color);
+	border: 3px solid var(--base-color);
+	width: 90%;
+	height: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
 }
-
-
-/* ----------------------
-fancybox
-retouchのサムネイルの設定
----------------------- */
-/* 親要素を基準にし、画像を重ねて配置 */
-.thumb-image-wrap {
-  position: relative;
+.muuri-item-category-text p {
+	font: var(--main-font);
+	font-size: 1rem;
+	letter-spacing: 3px;
+	color: var(--base-color);
 }
 
-.thumb-image-wrap img.hover-img  {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+/* サムネイルをホバーした時に固定で表示 */
+.muuri-item:hover .muuri-item-category {
+	transform: none;
 }
 
-/* ホバー時に画像を切り替え */
-.thumb-image-wrap:hover img.normal-img  { 
-	opacity: 0; 
-}
-.thumb-image-wrap:hover img.hover-img  { 
-	opacity: 1; 
-}
-
-
-
-/* ----------------------
-fancybox
-retouchのモーダルウィンドウの設定
-----------------------  */
-.modal-image-wrap {
-	position: relative;
-	width: 60vw;
-	height: auto;
-}
-.modal-image-wrap img.modal-nomal-img {
+/* ---------------------
+レタッチ画像
+--------------------- */
+.muuri-item-thumb-normal {
 	position: absolute;
 	top: 0;
 	left: 0;
 	opacity: 1;
-	transition: opacity 0.3s ease;
 }
-/* ホバー時に画像を切り替え */
-.modal-image-wrap:hover img.modal-nomal-img {
-	opacity: 0; 
-}
-.modal-image-wrap:hover img.modal-hover-img {
-	opacity: 1; 
-}
-.hide-area {
+.muuri-item-thumb-hover {
+	position: absolute;
+	top: 0;
+	left: 0;
 	opacity: 0;
+}
+.muuri-item-thumb:hover .muuri-item-thumb-normal {
+    opacity: 0;
+}
+.muuri-item-thumb:hover .muuri-item-thumb-hover {
+    opacity: 1;
+	transform: scale(1.1);
+}
+
+
+/* ================================================================
+MODAL WINDOW
+=================================================================== */
+/* ---------------------
+共通
+--------------------- */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60vw;
+  height: 100vh;
+  z-index: 10;
+}
+.modal_bg {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* ---------------------
+共通 > モーダルウィンドウが開いた後の画面
+--------------------- */
+.modal_content {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* ---------------------
+共通 > モダールウィンドウの閉じるボタン
+--------------------- */
+.modal_close {
+	position: absolute;
+	z-index: 10;
+	top: 50px;
+	right: 50px;
+	width: 60px;
+	height: 60px;
+	background-color: var(--accent-color);
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s;
+}
+.modal_close:hover {
+	background-color: var(--main-color);
+}
+.modal_close span::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+.modal_close span::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/* ---------------------
+作品紹介
+--------------------- */
+.modal_introduction {
+	background: var(--base-color);
+	border: 5px solid var(--accent-color);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: scroll;
+	width: 550px;
+	height: 550px;
+	border-radius: 20px;
+}
+.modal_introduction-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: auto;
+	padding: 80px;
+}
+
+/* ---------------------
+作品紹介 > 作品タイトル
+--------------------- */
+.modal_introduction-title {
+	border-bottom: 1px solid var(--main-color);
+	padding: 50px 0;
+}
+.modal_introduction-subtitle h2 {
+	font: var(--main-font);
+	font-size: 2.6rem;
+	letter-spacing: 10px;
+	color: var(--accent-color);	
+}
+.modal_introduction-subtitle p {
+	font: var(--main-font);
+	font-size: 1rem;
+	letter-spacing: 3px;
+	color: var(--accent-color);
+	padding: 8px 0;
+}
+
+/* ---------------------
+作品紹介 > 作品タイトル > 日本語タイトル
+--------------------- */
+.modal_introduction-subtitle-jp h2 {
+	font: var(--text-font);
+	font-size: 1.5rem;
+}
+
+/* ---------------------
+作品紹介 > タグ
+--------------------- */
+.modal_introduction-tags {
+	display: flex;
+}
+.modal_introduction-tags p {
+	font: var(--text-font);
+	font-size: 0.5rem;
+	letter-spacing: 3px;
+	color: var(--base-color);
+	background-color: var(--main-color);
+	padding: 5px 20px;
+	margin: 20px 20px 20px 0;
+	border-radius: 50px;
+}
+
+/* ---------------------
+作品紹介 > 概要
+--------------------- */
+.modal_introduction-outline {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid var(--main-color);
+	padding-bottom: 50px;
+}
+
+/* ---------------------
+作品紹介 > 内容
+--------------------- */
+.modal_introduction-detail {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid var(--main-color);
+	padding-bottom: 50px;
+}
+
+/* ---------------------
+作品紹介 > 各コンテンツ
+--------------------- */
+.modal_introduction-wrapper {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal_introduction-wrapper h3 {
+	font: var(--main-font);
+	font-size: 0.8rem;
+	letter-spacing: 3px;
+	color: var(--base-color);
+	background-color: var(--accent-color);
+	padding: 0.3rem 1rem;
+	margin: 60px 0;
+	border-radius: 50px;
+	text-align: center;
+	min-width: 30%;
+}
+.modal_introduction-wrapper p {
+	font-size: 0.8rem;
+}
+
+
+
+/* ---------------------
+作品紹介 > プレビュー
+--------------------- */
+.modal_introduction-preview {
+	padding: 80px 0;
+}
+.modal_introduction-link {
+	width: 100%;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+}
+
+/* ---------------------
+作品紹介 > プレビュー > テキスト
+--------------------- */
+.modal_introduction-link p {
+	font: var(--main-font);
+	font-size: 1.5rem;
+	letter-spacing: 5px;
+}
+
+/* ---------------------
+作品紹介 > プレビュー > ボタンの背景色
+--------------------- */
+.modal_introduction-link a {
+	position: relative;
+	top: 0;
+	left: 80px;
+	width: 80px;
+	height: 80px;
+	background-color: var(--main-color);
+	border-radius: 50%;
+}
+.modal_introduction-link a:hover {
+	background-color: var(--accent-color);
+}
+
+/* ---------------------
+作品紹介 > プレビュー > ボタンの矢印部分
+--------------------- */
+.modal_introduction-link a::before {
+	content: '';
+	position: absolute;
+	top: 42px;
+	left: 25px;
+	width: 30px;
+	height: 2px;
+	background-color: var(--base-color);
+}
+.modal_introduction-link a::after {
+	content: '';
+	position: absolute;
+	top: 35px;
+	left: 39px;
+	width: 20px;
+	height: 2px;
+	background-color: var(--base-color);
+	transform: rotate(45deg);
+}
+
+/* ---------------------
+レタッチ
+--------------------- */
+.modal_retouch {
+	padding: 0;
+	border: none;
+	background: none;
+}
+.modal_retouch-nomal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 1;
+	object-fit: cover;
+}
+.modal_retouch-hover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	object-fit: cover;
+}
+.modal_retouch:hover .modal_retouch-nomal {
+	opacity: 0;
+}
+.modal_retouch:hover .modal_retouch-hover {
+	opacity: 1;
+}
+.modal_retouch-reference {
+	position: absolute;
+	bottom: -50px;
+	left: 0;
+	font: var(--text-font);
+	font-size: 0.8rem;
+	color: var(--base-color);
+}
+/* レタッチ写真のサイズ調整 */
+.modal_retouch-01 {
+	width: 600px;
+	height: 400px;
+}
+.modal_retouch-02 {
+	width: 650px;
+	height: 420px;
+}
+.modal_retouch-03 {
+	width: 600px;
+	height: 400px;
+}
+.modal_retouch-04 {
+	width: 550px;
+	height: 500px;
+}
+.modal_retouch-05 {
+	width: 600px;
+	height: 400px;
+}
+.modal_retouch-06 {
+	width: 600px;
+	height: 400px;
+}
+.modal_retouch-07 {
+	width: 600px;
+	height: 400px;
+}
+
+/* 風景写真のサイズ調整 */
+.modal_landscape-01 {
+	width: 600px;
+	height: 400px;
+}
+.modal_landscape-02 {
+	width: 600px;
+	height: 400px;
+}
+
+/* スケッチ写真のサイズ調整 */
+.modal_sketch {
+	width: 600px;
+	height: 400px;
 }
