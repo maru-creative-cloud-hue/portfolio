@@ -1,29 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>WORKS - MARUYAMA's PORTFOLIO</title>
 		<meta name="description" content="maruyama's portfolio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS ======================================== -->
         <!-- リセットcss -->
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-        <!-- fancyboxのcss -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
         <!-- Googleフォントのcss -->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
         <!-- ファビコンのcss -->
         <link rel="icon" type="image/png" href="common/img/favicon.png">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/multiscroll.js/0.2.2/jquery.multiscroll.css">
         <!-- 自作のcss -->
         <link rel="stylesheet" href="common/css/common.css">
 		<link rel="stylesheet" href="css/works.css">
+        <!-- JS ======================================== -->
         <!-- jQueryのjs -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous" defer></script>
-        <!-- Muuriのjs -->
-        <script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js" defer></script>
-        <script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js" defer></script>
-        <!-- fancyboxのjs -->
-        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- Web Animations API & Muuri の CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/web-animations-js@2.3.2/web-animations.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js" defer></script>
         <!-- font awesome -->
         <script src="https://kit.fontawesome.com/e63ff7a4be.js" crossorigin="anonymous" defer></script>
         <!-- Adobeフォント -->
@@ -67,19 +64,46 @@
 
                 <!-- menuボタン -->
                  <div class="header-menu">
-                    <div class="header-open">
+                    <a class="header-open">
                         <span></span>
                         <span></span>
-                    </div>
+                    </a>
                     <nav id="header-nav">
                         <div class="header-nav-list">
                             <ul>
-                                <li><a href="index.html">home</a></li>
-                                <li><a href="topics.html">topics</a></li>
-                                <li><a href="about.html">about</a></li>
-                                <li><a href="works.html" class="current">works</a></li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li>
+                                    <a href="index.html">
+                                        <p class="header-nav-list-en">home</p>
+                                        <p class="header-nav-list-jp">ホーム</p>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="topics.html">
+                                        <p class="header-nav-list-en">topics</p>
+                                        <p class="header-nav-list-jp">トピックス</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="about.html">
+                                        <p class="header-nav-list-en">about</p>
+                                        <p class="header-nav-list-jp">私について</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="works.html" class="current">
+                                        <p class="header-nav-list-en">works</p>
+                                        <p class="header-nav-list-jp">制作実績</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        <p class="header-nav-list-en">contact</p>
+                                        <p class="header-nav-list-jp">お問い合わせ</p>
+                                    </a>
+                                </li>
                             </ul>
+                            
                             <!-- モバイル版のみに対応 -->
                             <ul class="header-sns-list-mobile">
                                 <li><a href="https://x.com/maru_create0906"><i class="fa-brands fa-x-twitter"></i></a></li>
@@ -131,379 +155,2026 @@
 
                     <!-- ここからデスクトップ画面用 -->
                     <!-- 選別ボタン -->
-                    <div class="sort">
-                        <ul class="sort-btn">
-                            <li class="sort00 active">ALL</li>
-                            <li class="sort01">WEBSITE</li>
-                            <li class="sort02">MOVIE</li>
-                            <li class="sort03">PHOTO</li>
-                            <li class="sort04">GRAPHICS</li>
-                            <li class="sort05">ARTWORK</li>
+                    <div class="filter-container">
+                        <ul class="filter-buttons">
+                            <li><button class="filter-btn active" data-filter="*">ALL</button></li>
+                            <li><button class="filter-btn" data-filter=".website">WEBSITE</button></li>
+                            <li><button class="filter-btn" data-filter=".photo">PHOTO</button></li>
+                            <li><button a href="" class="filter-btn" data-filter=".movie">MOVIE</button></li>
+                            <li><button a href="" class="filter-btn" data-filter=".graphics">GRAPHICS</button></li>
+                            <li><button a href="" class="filter-btn" data-filter=".artwork">ARTWORK</button></li>
                         </ul>
                     </div>
-                        
+
                     <!-- 作品ギャラリー -->
-                    <div class="left-gallery-container">
+                    <div class="gallery-container">
 
-                        <!-- 作品リスト -->
-                        <ul class="grid">
+                        <!-- アイテム一覧 -->
+                        <div class="gallery-grid">
 
+                            <!--
+                            ====================
+                            サムネイル > WEBSITE
+                            ====================
+                            -->
+
+                            <div class="muuri-item website" data-category="website">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>WEBSITE</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                
+                            <div class="muuri-item website" data-category="website" data-group="website">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="website-01">
+                                        <img src="img/thumb_website_01.jpg" alt="ウェブサイト①">
+                                    </a>
+                                </div>
+                            </div>
+                
+                            <div class="muuri-item website" data-category="website" data-group="website">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="website-02">
+                                        <img src="img/thumb_website_02.jpg" alt="ウェブサイト②">
+                                    </a>
+                                </div>
+                            </div>
+                    
+                    
+                            <!--
+                            ====================
+                            サムネイル > ALBUM
+                            ====================
+                            -->
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>ALBUM</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="photo-01">
+                                        <img src="img/thumb_photo_01.jpg" alt="ウェディングアルバム①">
+                                    </a>
+                                </div>
+                            </div>
+                    
+                            <!--
+                            ====================
+                            サムネイル > RETOUCH
+                            ====================
+                            -->
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>RETOUCH</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-01">
+                                        <img src="img/thumb_retouch_01-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:1 > 通常画像">
+                                        <img src="img/thumb_retouch_01-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:1 > ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-02">
+                                        <img src="img/thumb_retouch_02-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:2 > 通常画像">
+                                        <img src="img/thumb_retouch_02-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:2 >ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-03">
+                                        <img src="img/thumb_retouch_03-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:3 > 通常画像">
+                                        <img src="img/thumb_retouch_03-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:3 > ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-04">
+                                        <img src="img/thumb_retouch_04-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:4 > 通常画像">
+                                        <img src="img/thumb_retouch_04-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:4 > ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-05">
+                                        <img src="img/thumb_retouch_05-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:5 > 通常画像">
+                                        <img src="img/thumb_retouch_05-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:5 > ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-06">
+                                        <img src="img/thumb_retouch_06-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:6 > 通常画像">
+                                        <img src="img/thumb_retouch_06-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:6 > ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="retouch-07">
+                                        <img src="img/thumb_retouch_07-1.jpg" class="muuri-item-thumb-normal" alt="レタッチ:7 > 通常画像">
+                                        <img src="img/thumb_retouch_07-2.jpg" class="muuri-item-thumb-hover" alt="レタッチ:7 > ホバー画像">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--
+                            ====================
+                            サムネイル > LANDSCAPE
+                            ====================
+                            -->
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>LANDSCAPE</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-01">
+                                        <img src="img/thumb_landscape_01.jpg" alt="風景写真:1">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-02">
+                                        <img src="img/thumb_landscape_02.jpg" alt="風景写真:2">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-03">
+                                        <img src="img/thumb_landscape_03.jpg" alt="風景写真:3">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-04">
+                                        <img src="img/thumb_landscape_04.jpg" alt="風景写真:4">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-05">
+                                        <img src="img/thumb_landscape_05.jpg" alt="風景写真:5">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-06">
+                                        <img src="img/thumb_landscape_06.jpg" alt="風景写真:6">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item photo" data-category="photo">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="landscape-07">
+                                        <img src="img/thumb_landscape_07.jpg" alt="風景写真:7">
+                                    </a>
+                                </div>
+                            </div>
+                    
+                            <!--
+                            ====================
+                            サムネイル > MOVIE
+                            ====================
+                            -->
+
+                            <div class="muuri-item movie" data-category="movie">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>MOVIE</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                    
+                            <div class="muuri-item movie" data-category="movie">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="movie-01">
+                                        <img src="img/thumb_movie_01.jpg" alt="動画作品①">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--
+                            ====================
+                            サムネイル > GRAPHICS
+                            ====================
+                            -->
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>GRAPHICS</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="graphics-01">
+                                        <img src="img/thumb_graphics_01.jpg" alt="メッセージカード">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!--
+                            ====================
+                            サムネイル > FLYER
+                            ====================
+                            -->
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="flyer-01">
+                                        <img src="img/thumb_flyer_01.jpg" alt="フライヤー:1">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="flyer-02">
+                                        <img src="img/thumb_flyer_02.jpg" alt="フライヤー:2">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="flyer-03">
+                                        <img src="img/thumb_flyer_03.jpg" alt="フライヤー:3">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="flyer-04">
+                                        <img src="img/thumb_flyer_04.jpg" alt="フライヤー:4">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="flyer-05">
+                                        <img src="img/thumb_flyer_05.jpg" alt="フライヤー:5">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item graphics" data-category="graphics">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="flyer-06">
+                                        <img src="img/thumb_flyer_06.jpg" alt="フライヤー:6">
+                                    </a>
+                                </div>
+                            </div>
+                    
                             <!--====================
-                            WEBSITE
+                            サムネイル > ARTWORK
                             ====================-->
-                            <!-- website -->
-                            <li class="item sort01"><img src="img/category_01.png" alt="WEBSITE"></li>
-                            <li class="item sort01">
-                                <div class="item-content">
-                                    <a href="introduction/item_01.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_website_01.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort01">
-                                <div class="item-content">
-                                    <a href="introduction/item_02.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_website_02.jpg" alt=""></a>
-                                </div>
-                            </li>
 
-                            
-                            <!--====================
-                            MOVIE
-                            ====================-->
-                            
-                            <!-- movie -->
-                            <li class="item sort02"><img src="img/category_02.png" alt="MOVIE"></li>
-                            <li class="item sort02">
-                                <div class="item-content">
-                                    <a href="introduction/item_03.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_movie_01.jpg" alt=""></a>
-                                </div>
-                            </li>
-
-                            
-                            <!--====================
-                            PHOTO
-                            ====================-->
-                            
-                            <!-- album -->
-                            <li class="item sort03"><img src="img/category_03.png" alt=""></li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="introduction/item_04.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_photo_01.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <!-- landscape -->
-                            <li class="item sort03"><img src="img/category_04.png" alt=""></li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_01.jpg" data-fancybox="group1"><img src="img/thumb_landscape_01.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_02.jpg" data-fancybox="group1"><img src="img/thumb_landscape_02.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_03.jpg" data-fancybox="group1"><img src="img/thumb_landscape_03.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_04.jpg" data-fancybox="group1"><img src="img/thumb_landscape_04.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_05.jpg" data-fancybox="group1"><img src="img/thumb_landscape_05.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_06.jpg" data-fancybox="group1"><img src="img/thumb_landscape_06.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="img/landscape_07.jpg" data-fancybox="group1"><img src="img/thumb_landscape_07.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <!-- retouch -->
-                            <li class="item sort03"><img src="img/category_05.png" alt=""></li>
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch01" data-fancybox="gallery" data-caption="参考:Photoshop レタッチ・加工 アイデア図鑑 (SB Creative)">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_01-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_01-2.jpg" class="hover-img" alt="ホバー画像">
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>ARTWORK</p>
                                         </div>
                                     </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch02" data-fancybox="gallery" data-caption="URL:https://www.adobe.com/jp/learn/photoshop/web/remove-person-from-photo?learnIn=1">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_02-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_02-2.jpg" class="hover-img" alt="ホバー画像">
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="artwork-01">
+                                        <img src="img/thumb_art-work_01.jpg" alt="アートワーク:1">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="artwork-02">
+                                        <img src="img/thumb_art-work_02.jpg" alt="アートワーク:2">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="artwork-03">
+                                        <img src="img/thumb_art-work_03.jpg" alt="アートワーク:3">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="artwork-04">
+                                        <img src="img/thumb_art-work_04.jpg" alt="アートワーク:4">
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <!--
+                            ====================
+                            サムネイル > SKETCH
+                            ====================
+                            -->
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-category js-modal-open">
+                                        <div class="muuri-item-category-text">
+                                            <p>SKETCH</p>
                                         </div>
                                     </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch03" data-fancybox="gallery" data-caption="URL:https://www.adobe.com/jp/learn/photoshop/web/content-aware-hide-objects?learnIn=1">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_03-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_03-2.jpg" class="hover-img" alt="ホバー画像">
-                                        </div>
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-01">
+                                        <img src="img/thumb_sketch-01.jpg" alt="スケッチ:1">
                                     </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch04" data-fancybox="gallery" data-caption="URL:https://www.adobe.com/jp/learn/photoshop/web/retouch-photo-techniques?learnIn=1&locale=ja">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_04-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_04-2.jpg" class="hover-img" alt="ホバー画像">
-                                        </div>
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-02">
+                                        <img src="img/thumb_sketch-02.jpg" alt="スケッチ:2">
                                     </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch05" data-fancybox="gallery" data-caption="URL:https://www.adobe.com/jp/learn/photoshop/in-app/3-ways-to-remove-pimples-and-correct-skin?learnIn=1">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_05-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_05-2.jpg" class="hover-img" alt="ホバー画像">
-                                        </div>
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-03">
+                                        <img src="img/thumb_sketch-03.jpg" alt="スケッチ:3">
                                     </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch06" data-fancybox="gallery" data-caption="URL:https://www.adobe.com/jp/learn/photoshop/in-app/how-to-composite-steam?learnIn=1">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_06-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_06-2.jpg" class="hover-img" alt="ホバー画像">
-                                        </div>
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-04">
+                                        <img src="img/thumb_sketch-04.jpg" alt="スケッチ:4">
                                     </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <li class="item sort03">
-                                <div class="item-content">
-                                    <a href="#retouch07" data-fancybox="gallery" data-caption="URL:https://www.adobe.com/jp/learn/photoshop/in-app/remove-graffiti-with-the-healing-brush-tools?learnIn=1">
-                                        <div class="thumb-image-wrap">
-                                            <!-- 通常時の画像 -->
-                                            <img src="img/thumb_retouch_07-1.jpg" class="normal-img" alt="通常画像">
-                                            <!-- マウスオーバー時の画像 -->
-                                            <img src="img/thumb_retouch_07-2.jpg" class="hover-img" alt="ホバー画像">
-                                        </div>
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-05">
+                                        <img src="img/thumb_sketch-05.jpg" alt="スケッチ:5">
                                     </a>
                                 </div>
-                            </li>
-                            
-                            <!--====================
-                            GRAPHICS
-                            ====================-->
-                            
-                            <!-- graphics -->
-                            <li class="item sort04"><img src="img/category_06.png" alt=""></li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="introduction/item_05.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_graphics_01.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <!-- flyer -->
-                            <li class="item sort04"><img src="img/category_07.png" alt=""></li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="introduction/item_06.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_flyer_01.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="img/flyer_02.jpg" data-fancybox="group3"><img src="img/thumb_flyer_02.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="img/flyer_03.jpg" data-fancybox="group3"><img src="img/thumb_flyer_03.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="img/flyer_04.jpg" data-fancybox="group3"><img src="img/thumb_flyer_04.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="img/flyer_05.jpg" data-fancybox="group3"><img src="img/thumb_flyer_05.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort04">
-                                <div class="item-content">
-                                    <a href="img/flyer_06.jpg" data-fancybox="group3"><img src="img/thumb_flyer_06.jpg" alt=""></a>
-                                </div>
-                            </li>
+                            </div>
 
-                            
-                            <!--====================
-                            ARTWORK
-                            ====================-->
-                            
-                            <!-- artwork -->
-                            <li class="item sort05"><img src="img/category_08.png" alt=""></li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="introduction/item_07.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_art-work_01.jpg" alt=""></a>
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-06">
+                                        <img src="img/thumb_sketch-06.jpg" alt="スケッチ:6">
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="introduction/item_08.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_art-work_02.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="introduction/item_09.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_art-work_03.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="introduction/item_10.html" target="_blank" rel="noopener noreferrer"><img src="img/thumb_art-work_04.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <!-- sketch -->
-                            <li class="item sort05"><img src="img/category_09.png" alt=""></li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_01.jpg" data-fancybox="group5"><img src="img/thumb_sketch-01.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_02.jpg" data-fancybox="group5"><img src="img/thumb_sketch-02.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_03.jpg" data-fancybox="group5"><img src="img/thumb_sketch-03.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_04.jpg" data-fancybox="group5"><img src="img/thumb_sketch-04.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_05.jpg" data-fancybox="group5"><img src="img/thumb_sketch-05.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_06.jpg" data-fancybox="group5"><img src="img/thumb_sketch-06.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_07.jpg" data-fancybox="group5"><img src="img/thumb_sketch-07.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_08.jpg" data-fancybox="group5"><img src="img/thumb_sketch-08.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_09.jpg" data-fancybox="group5"><img src="img/thumb_sketch-09.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_10.jpg" data-fancybox="group5"><img src="img/thumb_sketch-10.jpg" alt=""></a>
-                                </div>
-                            </li>
-                            <li class="item sort05">
-                                <div class="item-content">
-                                    <a href="img/sketch_11.jpg" data-fancybox="group5"><img src="img/thumb_sketch-11.jpg" alt=""></a>
-                                </div>
-                            </li>
-                        </ul>
+                            </div>
 
-                        <!--======================
-                        ポップアップ後の画面
-                        ======================-->
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-07">
+                                        <img src="img/thumb_sketch-07.jpg" alt="スケッチ:7">
+                                    </a>
+                                </div>
+                            </div>
 
-                        <div class="hide-area">
-                            <section id="retouch01">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_01-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_01-2.jpg" class="modal-hover-img">
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-08">
+                                        <img src="img/thumb_sketch-08.jpg" alt="スケッチ:8">
+                                    </a>
                                 </div>
-                            </section>
-                            <section id="retouch02">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_02-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_02-2.jpg" class="modal-hover-img">
+                            </div>
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-09">
+                                        <img src="img/thumb_sketch-09.jpg" alt="スケッチ:9">
+                                    </a>
                                 </div>
-                            </section>
-                            <section id="retouch03">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_03-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_03-2.jpg" class="modal-hover-img">
+                            </div>
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-10">
+                                        <img src="img/thumb_sketch-10.jpg" alt="スケッチ:10">
+                                    </a>
                                 </div>
-                            </section>
-                            <section id="retouch04">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_04-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_04-2.jpg" class="modal-hover-img">
+                            </div>
+
+                            <div class="muuri-item artwork" data-category="artwork">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb js-modal-open" data-target="sketch-11">
+                                        <img src="img/thumb_sketch-11.jpg" alt="スケッチ:11">
+                                    </a>
                                 </div>
-                            </section>
-                            <section id="retouch05">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_05-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_05-2.jpg" class="modal-hover-img">
-                                </div>
-                            </section>
-                            <section id="retouch06">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_06-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_06-2.jpg" class="modal-hover-img">
-                                </div>
-                            </section>
-                            <section id="retouch07">
-                                <div class="modal-image-wrap">
-                                    <img src="img/retouch_07-1.jpg" class="modal-nomal-img">
-                                    <img src="img/retouch_07-2.jpg" class="modal-hover-img">
-                                </div>
-                            </section>
+                            </div>
+                    
                         </div>
 
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > ウェブサイト
+                        ====================
+                        -->
+                        
+                        <div id="website-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2>MARUYAMA's PORTFOLIO</h2>
+                                            <p>マルヤマ アスカのポートフォリオ</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#website</p>
+                                            <p>#自主制作</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                自身の過去の作品を掲載したポートフォリオサイト。
+                                                淡い水色を基調とした爽やかでシンプルなデザイン。
+                                                作品の良さを潰さないように淡々とした印象を心がけた。
+                                                また自身の名前を元に、『丸 = 円形』をモチーフにして作成した。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                Photoshop / Illustrator / XD<br>
+                                                Visual Studio Code
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                企画・設計 - 1週間<br>
+                                                デザイン - 1週間<br>
+                                                コーディング - 2週間<br>
+                                                ブラッシュアップ - 1週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>企業採用ご担当者の方々。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>データ量の多い作品をまとめたポートフォリオを作成し、より直感的に簡単に閲覧できるものを作る。
+                                                企業の採用ご担当者の方に自身のことや作品の制作過程などを知ってもらい、一緒に仕事をするイメージを持っていただく。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p>動画やアルバムなどの作品のデータ量が多く、ファイルを圧縮して送信すると開くのに手間がかかってしまう。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>より詳しく見ていただきたい作品の詳細ページを作品一覧にまとめ、
+                                                動画作品やアルバムなどのデータ量が多い紹介ページはモーダルウィンドウを実装することで簡単に作品が閲覧できるように工夫した。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p>
+                                                ・1冊ですべて身につくHTML&CSSとWebデザイン入門講座(SBクリエイティブ)<br>
+                                                ・ほんの一手間で劇的に変わるHTML&CSSとWebデザイン実践講座(SBクリエイティブ)<br>
+                                                ・動くWebデザインアイディア帳(ソシム社)
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="../20261109_portfolio-website_ver.4.2/index.html"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+                         <div id="website-02" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2>LITA CAFE</h2>
+                                            <p>リタカフェ</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#website</p>
+                                            <p>#自主制作</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p> 就労移行支援事業所にて、プログラミング学習用の素材を元に作成した架空のカフェのウェブサイト。
+                                                温かみのある、リラックスしたアットホームな雰囲気のカフェを想定して制作を行なった。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                Photoshop / Illustrator / XD<br>
+                                                Visual Studio Code / Dreamweaver
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                情報収集・学習 - 2週間<br>
+                                                デザイン・設計 - 2週間<br>
+                                                コーディング - 2週間<br>
+                                                ブラッシュアップ - 3週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>20代〜30代の年齢層</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>架空のカフェサイトを制作し、ターゲットや目的などを決めてスキルを表明する。
+                                                カフェに来たお客様がゆったりと寛げるような、リラックスした雰囲気をWEBサイトで表現する。
+                                                お店の雰囲気や情報を知ってもらい、お店に来たいと思うようなWEBサイトに繋げる。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>店内の食べ物の写真やお店の雰囲気がわかりやすいように色使いや明るさを調整し、より食べ物が美味しそうに見えるように写真を加工した。
+                                                お店の雰囲気が伝わるように写真のスライドショーを流し、手書き風の文字フォントや紙素材の写真を背景に使用して素朴でゆったりした印象が持てるようにした。
+                                                ユーザーがポチッと押したくなるような楽しいボタンのデザインを他の飲食店などのHPを参考にしながら制作した。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper modal_introduction-sources">
+                                            <h3>使用サイト</h3>
+                                            <p><a href="https://unsplash.com/ja">https://unsplash.com/ja</a></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p>
+                                                ・1冊ですべて身につくHTML&CSSとWebデザイン入門講座(SBクリエイティブ)<br>
+                                                ・ほんの一手間で劇的に変わるHTML&CSSとWebデザイン実践講座(SBクリエイティブ)<br>
+                                                ・動くWebデザインアイディア帳(ソシム社)
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="../20261109_portfolio-website_ver.4.2/works/website_02/index.html"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+                        
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > アルバム
+                        ====================
+                        -->
+                        <div id="photo-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2>WEDDING<br>
+											PHOTO ALBUM</h2>
+                                            <p>ウェディングフォトアルバム</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#photo</p>
+                                            <p>#自主制作</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                爽やかでナチュラルな雰囲気のウェディングアルバム。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                Photoshop / Illustrator / InDesign
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                情報収集 - 1週間<br>
+												デザイン - 2週間<br>
+												ブラッシュアップ - 1週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>結婚式を挙げる新郎新婦の方</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>ウェディング関係の求人応募のため</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>
+                                                ナチュラルウェディングというコンセプトに基づき、爽やかで男女ともに使えるようなデザインを意識して作成した。
+												背景の青空がとても綺麗な写真だったので、空が映えるようなデザインを意識した。
+												元画像の色味がくっきりしすぎていたので、Photoshopを使用して全体のトーンを下げて調整をした。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper modal_introduction-sources">
+                                            <h3>使用サイト</h3>
+                                            <p><a href="https://stock.adobe.com/jp">https://stock.adobe.com/jp</a></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper modal_introduction-rereference">
+                                            <h3>参考</h3>
+                                            <p><a href="https://albumcafe.jp/">https://albumcafe.jp/</a></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/album_01.pdf"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > レタッチ
+                        ====================
+                        -->
+
+                        <div id="retouch-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-01">
+                                <img src="img/retouch_01-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_01-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    参考:Photoshop レタッチ・加工 アイデア図鑑 (SB Creative)
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        
+                        <div id="retouch-02" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-02">
+                                <img src="img/retouch_02-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_02-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    URL:https://www.adobe.com/jp/learn/photoshop/web/remove-person-from-photo?learnIn=1
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+                       
+                        
+                        <div id="retouch-03" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-03">
+                                <img src="img/retouch_03-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_03-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    URL:https://www.adobe.com/jp/learn/photoshop/web/content-aware-hide-objects?learnIn=1
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+                       
+
+                        
+                        <div id="retouch-04" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-04">
+                                <img src="img/retouch_04-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_04-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    URL:https://www.adobe.com/jp/learn/photoshop/web/retouch-photo-techniques?learnIn=1&locale=ja
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+                       
+
+                        
+                        <div id="retouch-05" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-05">
+                                <img src="img/retouch_05-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_05-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    URL:https://www.adobe.com/jp/learn/photoshop/in-app/3-ways-to-remove-pimples-and-correct-skin?learnIn=1
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+
+                        <div id="retouch-06" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-06">
+                                <img src="img/retouch_06-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_06-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    URL:https://www.adobe.com/jp/learn/photoshop/in-app/how-to-composite-steam?learnIn=1
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+
+                        <div id="retouch-07" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_retouch modal_retouch-07">
+                                <img src="img/retouch_07-1.jpg" class="modal_retouch-nomal" width="100%" height="100%">
+                                <img src="img/retouch_07-2.jpg" class="modal_retouch-hover" width="100%" height="100%">
+                                <p class="modal_retouch-reference">
+                                    URL:https://www.adobe.com/jp/learn/photoshop/in-app/remove-graffiti-with-the-healing-brush-tools?learnIn=1
+                                </p>
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+                       
+                        
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > 風景写真
+                        ====================
+                        -->
+
+                        <div id="landscape-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_landscape-01">
+                                <img src="img/landscape_01.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="landscape-02" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content">
+                                <img src="img/landscape_02.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="landscape-03" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content">
+                                <img src="img/landscape_03.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="landscape-04" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content">
+                                <img src="img/landscape_04.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="landscape-05" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content">
+                                <img src="img/landscape_05.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="landscape-06" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content">
+                                <img src="img/landscape_06.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="landscape-07" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_landscape-02">
+                                <img src="img/landscape_07.jpg" class="modal_landscape-img" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > ウェディングムービー
+                        ====================
+                        -->
+
+                        <div id="movie-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2>WEDDING MOVIE</h2>
+                                            <p>ウェディングムービー</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#movie</p>
+                                            <p>#自主制作</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                映画のオープニングのような、明るくてテンションの上がるおしゃれなウェディングムービー。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                Premiere Pro / AfterEffects
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                情報収集 - 1週間<br>
+												デザイン - 2週間<br>
+												ブラッシュアップ - 1週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>新郎新婦の方々。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>ウェディング関係の求人応募のため。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>
+                                                挙式のオープニングムービーを想定して制作を行なった。
+												式の盛り上がりが下がらないよう、入場までのワクワク感を保って入場していただけるように短めに動画を編集した。
+												BGMは映画『プラダを着た悪魔』のオープニングに使われているもので、この映画のオープニングや
+												実際に使われているウェディングムービーなどを参考にした。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用サイト</h3>
+                                            <p><a href="https://www.istockphoto.com/jp">https://www.istockphoto.com/jp</a></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p>
+                                                <a href="https://shirokuma.wedding/">https://shirokuma.wedding/</a>
+                                                <a href="https://www.liferom.wedding/">https://www.liferom.wedding/</a>
+                                                <a href="https://www.piary.jp/movie/original/">https://www.piary.jp/movie/original/</a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/movie_01.mp4"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > グラフィック
+                        ====================
+                        -->
+
+                        <div id="graphics-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2>MESSAGE CARD</h2>
+                                            <p>メッセージカード</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#graphics</p>
+                                            <p>#message card</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>お世話になった方に感謝の気持ちを込めて贈った<br>
+                                            退職祝いのメッセージカード
+                                            
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                Illustrator
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                情報収集・アイデア出し - 3日<br>
+                                                デザイン - 1週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>就労移行支援事業所にてお世話になったスタッフの方。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>お世話になった担当のスタッフの方が退職されたので、メッセージカードを作成し感謝の気持ちを伝える。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p>感謝の気持ちを伝え、スタッフの方に喜んでいただけるようにお人柄に合ったものを制作する。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>スタッフの方が明るく元気なお人柄だったので、イメージ通り明るくて華やかな感じを意識してデザインを制作した。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper modal_introduction-sources">
+                                            <h3>使用サイト</h3>
+                                            <p>
+                                                <a href="https://stock.adobe.com/jp">https://stock.adobe.com/jp</a>
+                                                <a href="https://unsplash.com/ja">https://unsplash.com/ja</a>
+                                            </p>
+                                        </div>
+
+                                        <div class="modal_introduction-wrapper modal_introduction-rereference">
+                                            <h3>参考</h3>
+                                            <p>
+                                                <a href="https://www.adobe.com/jp/learn/photoshop?learnIn=1">https://www.adobe.com/jp/learn/photoshop?learnIn=1</a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/graphic_01.jpg"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > フライヤー
+                        ====================
+                        -->
+
+                        <div id="flyer-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle modal_introduction-subtitle-jp">
+                                            <h2>
+                                                第2回<br>
+                                                リタリコワークス主催　合同企業説明会案内ポスター
+                                            </h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#graphics</p>
+                                            <p>#flyer</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                リタリコの企業カラーであるグリーンを基調に合同企業説明会の案内ポスターを制作してほしい、とのご依頼をいただき
+                                                グリーンの背景をベースに可愛らしさを加えたデザインにした。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                Figma
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                情報設計 - 1週間<br>
+                                                デザイン - 1週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>合同企業説明会に参加されるスタッフや利用者の方々。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>利用者の方々に向けて、合同企業説明会に参加したい！と思ってくれるようなポスターを作る。
+                                                当日の日程のご案内や、説明会に参加される企業様の情報などを伝える。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p>利用者の方々に向けて会場までの案内や、当日参加される企業様の情報をわかりやすく表示する。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p> 
+                                                表面はタイトルや説明会に関する日程などの重要事項、裏面はその詳細と明確に分けて記載した。
+                                                裏面もあることを伝えるために右端に三角形の形でアイコンを作成し、スペースを省略した。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用サイト</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper modal_introduction-rereference">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href=""></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="flyer-02" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2></h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="flyer-03" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2></h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+
+                        <div id="flyer-04" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2></h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+
+                        <div id="flyer-05" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2></h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+                        <div id="flyer-06" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2></h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > アートワーク
+                        ====================
+                        -->
+
+                        <div id="artwork-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle modal_introduction-subtitle-jp">
+                                            <h2>時計</h2>
+                                            <p>とけい</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#artwork</p>
+                                            <p>#sticker</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                スチームパンクをテーマに制作した線画イラスト。
+                                                古めかしい機械チックなアナログ時計をモチーフにして制作を行なった。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                えんぴつ / サインペン
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                2週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p>趣味でギターを弾いている知人へ</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>知人からスチームパンクをテーマにギターに貼る用のステッカーのイラストを描いて欲しい、とご依頼をいただいたので制作を行なった。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>線画の細かい部分まで詳細に丁寧に描き込んだ。</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/art-work_01.jpg"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+                        <div id="artwork-02" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle modal_introduction-subtitle-jp">
+                                            <h2>夏の風物詩</h2>
+                                            <p>なつのふうぶつし</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#artwork</p>
+                                            <p>#acrylic painting</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                高校の卒業制作で制作したアクリル画。
+                                                夏のお祭りの屋台にある、涼しげに金魚が泳いでいる姿をアクリル画で表現した。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>アクリルガッシュ
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                2ヶ月
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>高校の卒業制作で制作した作品。
+                                                日本画や水彩画の絵のタッチを参考にしながら和風で涼しげな印象の残るような作品に仕上げた。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>金魚の泳いでいる水飛沫をスパッタリングという技法で表現した。
+                                                青色部分と黒色の部分のコントラストを逆転させて波紋が印象に残るように表現した。</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/art-work_02.jpg"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+
+                        <div id="artwork-03" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle modal_introduction-subtitle-jp">
+                                            <h2>風景画</h2>
+                                            <p>ふうけいが</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#artwork</p>
+                                            <p>#oil painting</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>撮影した写真をもとに制作した油絵。
+                                                夏の夕暮れの風景を写した風景画
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                油絵の具
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                2週間
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>アルバイト帰りに偶然撮影した風景写真がとても綺麗だったので、写真をもとにしながら制作を行なった。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>背景の夕暮れの空がとても綺麗だったので、
+                                                夕暮れのオレンジ色からどんどん藍色に染まっていく色のグラデーションを油絵の具で表現した。</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/art-work_03.jpg"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="artwork-04" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle modal_introduction-subtitle-jp">
+                                            <h2>靴</h2>
+                                            <p>くつ</p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p>#artwork</p>
+                                            <p>#oil painting</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                                大学の洋画科の自由課題で制作した油絵。
+                                                知り合いにいただいたアディダスのスニーカーをモチーフに、かっこいい構図を目指して制作をした。
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                                えんぴつ / 油絵の具
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                                エスキース - 1週間<br>
+                                                下書き - 2週間<br>
+                                                色塗り - 3週間
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p>大学の一回生の冬に自由課題で制作した油絵。
+                                                テーマはなんでも好きなものでOKだったので、お気に入りのスニーカーをモチーフに油絵を描いた。</p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p>スニーカーの細かい部分をよく観察し、汚れの部分や凹んでいるところ、靴紐の複雑な仕組みなどを
+                                                細かく描き込み、リアリティのある表現を追求した。</p>
+                                        </div>
+                                    </div>
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="works/art-work_04.jpg"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <!-- 
+                        ====================
+                        モーダルウィンドウ > スケッチ
+                        ====================
+                        -->
+                        
+                        <div id="sketch-01" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_01.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-02" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_02.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-03" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_03.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-04" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_04.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-05" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_05.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-06" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_06.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-07" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_07.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-08" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_08.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-09" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_09.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-10" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_10.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+
+                        <div id="sketch-11" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_sketch">
+                                <img src="img/sketch_11.jpg" class="" width="100%" height="100%">
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div>
+                        
+
+                        <!-- テンプレート -->
+                        <!-- 
+                        <div id="" class="js-modal modal">
+                            <div class="modal_bg js-modal-close"></div>
+                            <div class="modal_content modal_introduction">
+
+                                <div class="modal_introduction-container">
+
+                                    <div class="modal_introduction-title">
+                                        <div class="modal_introduction-subtitle">
+                                            <h2></h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-tags">
+                                            <p></p>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="modal_introduction-outline">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>コンセプト</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>使用ツール</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>制作期間</h3>
+                                            <p>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-detail">
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>ターゲット</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>目的</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>課題点</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>工夫したところ</h3>
+                                            <p></p>
+                                        </div>
+                                        <div class="modal_introduction-wrapper">
+                                            <h3>参考</h3>
+                                            <p></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal_introduction-preview">
+                                        <div class="modal_introduction-link">
+                                            <p>
+                                                プレビューは<br>
+                                                こちらから
+                                            </p>
+                                            <a href="#"></a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>  
+                            </div>
+                            <a href="" class="modal_close js-modal-close"><span></span></a>
+                        </div> 
+                        -->
+
                     </div>
-
                 </div>
-
             </main>
         </div>
-
 	</body>
 </html>
