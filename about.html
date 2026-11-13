@@ -1,14 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
 		<title>ABOUT - MARUYAMA's PORTFOLIO</title>
 		<meta name="description" content="maruyama's portfolio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS ======================================== -->
 		<!--リセットcss-->
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
-        <!-- fancyboxのcss -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
 		<!--Googleフォント-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
         <!--ファビコン-->
@@ -16,13 +15,12 @@
         <!--自作のcss-->
         <link rel="stylesheet" href="common/css/common.css">
 		<link rel="stylesheet" href="css/about.css">
+        <!-- JS ======================================== -->
         <!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous" defer></script>
-        <!-- Muuriのjs -->
-        <script src="https://unpkg.com/web-animations-js@2.3.2/web-animations.min.js" defer></script>
-        <script src="https://unpkg.com/muuri@0.8.0/dist/muuri.min.js" defer></script>
-        <!-- fancyboxのjs -->
-        <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- Web Animations API & Muuri の CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/web-animations-js@2.3.2/web-animations.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js" defer></script>
         <!--font awesome-->
         <script src="https://kit.fontawesome.com/e63ff7a4be.js" crossorigin="anonymous" defer></script>
         <!--Adobeフォント-->
@@ -56,26 +54,54 @@
             <!-- ヘッダー -->
             <header>
 
-                <!-- snsアイコン --><div class="header-sns">
+                <!-- snsアイコン -->
+                <div class="header-sns">
                     <ul class="header-sns-list">
                         <li><a href="https://x.com/maru_create0906"><i class="fa-brands fa-x-twitter"></i></a></li>
                         <li><a href="https://www.instagram.com/maru.creative.cloud/"><i class="fa-brands fa-instagram"></i></a></li>
                     </ul>                    
                 </div>
 
-                <!-- menuボタン --><div class="header-menu">
-                    <div class="header-open">
+                <!-- menuボタン -->
+                <div class="header-menu">
+                    <a class="header-open">
                         <span></span>
                         <span></span>
-                    </div>
+                    </a>
                     <nav id="header-nav">
                         <div class="header-nav-list">
                             <ul>
-                                <li><a href="index.html">home</a></li>
-                                <li><a href="topics.html">topics</a></li>
-                                <li><a href="about.html" class="current">about</a></li>
-                                <li><a href="works.html">works</a></li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li>
+                                    <a href="index.html">
+                                        <p class="header-nav-list-en">home</p>
+                                        <p class="header-nav-list-jp">ホーム</p>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="topics.html">
+                                        <p class="header-nav-list-en">topics</p>
+                                        <p class="header-nav-list-jp">トピックス</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="about.html" class="current">
+                                        <p class="header-nav-list-en">about</p>
+                                        <p class="header-nav-list-jp">私について</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="works.html">
+                                        <p class="header-nav-list-en">works</p>
+                                        <p class="header-nav-list-jp">制作実績</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        <p class="header-nav-list-en">contact</p>
+                                        <p class="header-nav-list-jp">お問い合わせ</p>
+                                    </a>
+                                </li>
                             </ul>
 
                             <!-- モバイル版のみに対応 -->
@@ -124,120 +150,645 @@
                     </div>
 
                     <!-- ここからデスクトップ画面用 -->
-                    
-                    <!-- 選別ボタン -->
-                    <div class="sort">
-                        <ul class="sort-btn">
-                            <li class="sort00 active">PROFILE</li>
-                            <li class="sort01">LIKES</li>
-                            <li class="sort02">IMPORTANT</li>
-                            <li class="sort03">SKILL</li>
+                    <!-- フィルターボタン -->
+                    <div class="filter-container">
+                        <ul class="filter-buttons">
+                            <li><button class="filter-btn active" data-filter=".profile" data-cols="col-1">PROFILE</button></li>
+                            <li><button class="filter-btn" data-filter=".likes" data-cols="col-2">LIKES</button></li>
+                            <li><button class="filter-btn" data-filter=".important" data-cols="col-2">IMPORTANT</button></li>
+                            <li><button class="filter-btn" data-filter=".skill" data-cols="col-3">SKILL</button></li>
                         </ul>
                     </div>
 
-                    <!-- 作品ギャラリー -->
-                    <div class="contents">
+                    <!-- 私について -->
+                    <div class="gallery-container">
 
-                        <ul class="grid">
+                        <!-- アイテム一覧 -->
+                        <div class="gallery-grid col-1">
 
-                            <!-- PROFILE -->
-                            <li class="item sort00 item01">
-                                <div class="item-content">
-                                    <a href="img/profile_01.jpg" data-fancybox="group1"><img src="img/thumb_profile.png" alt="profile"></a>
+                            <!-- 
+                            ====================
+                            サムネイル > PROFILE
+                            ====================
+                            -->
+                            
+                            <div class="muuri-item profile" data-category="profile">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-profile" data-target="profile">
+                                        <div class="muuri-item-title">
+                                            <h2>PROFILE</h2>
+                                            <p>プロフィール</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/profile.png" alt="プロフィール画像" width="100px" height="100px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
+                            </div>
 
-                            <!-- LIKES -->
-                            <li class="item sort01 item02" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/likes_01.jpg" data-fancybox="group2"><img src="img/thumb_likes_01.png" alt="likes-01"></a>
+                            <!-- 
+                            ====================
+                            サムネイル > LIKES
+                            ====================
+                            -->
+                            
+                            <div class="muuri-item likes" data-category="likes">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-likes" data-target="likes-01">
+                                        <div class="muuri-item-title">
+                                            <h2>GAMES</h2>
+                                            <p>ゲーム</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/likes_01.png" alt="好きなもの" width="60px" height="50px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort01 item02" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/likes_02.jpg" data-fancybox="group2"><img src="img/thumb_likes_02.png" alt="likes-02"></a>
-                                </div>
-                            </li>
-                            <li class="item sort01 item02" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/likes_03.jpg" data-fancybox="group2"><img src="img/thumb_likes_03.png" alt="likes-03"></a>
-                                </div>
-                            </li>
-                            <li class="item sort01 item02" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/likes_04.jpg" data-fancybox="group2"><img src="img/thumb_likes_04.png" alt="likes-04"></a>
-                                </div>
-                            </li>
+                            </div>
 
-                            <!-- IMPORTANT -->
-                            <li class="item sort02 item03" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/important_01.jpg" data-fancybox="group3"><img src="img/thumb_important_01.png" alt="important-01"></a>
+                            <div class="muuri-item likes" data-category="likes">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-likes" data-target="likes-02">
+                                        <div class="muuri-item-title">
+                                            <h2>MOVIES</h2>
+                                            <p>映画</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/likes_02.png" alt="好きなもの" width="60px" height="60px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort02 item03" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/important_02.jpg" data-fancybox="group3"><img src="img/thumb_important_02.png" alt="important-02"></a>
-                                </div>
-                            </li>
-                            <li class="item sort02 item03" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/important_03.jpg" data-fancybox="group3"><img src="img/thumb_important_03.png" alt="important-03"></a>
-                                </div>
-                            </li>
-                            <li class="item sort02 item03" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/important_04.jpg" data-fancybox="group3"><img src="img/thumb_important_04.png" alt="important-04"></a>
-                                </div>
-                            </li>
+                            </div>
 
-                            <!-- SKILL -->
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_01.jpg" data-fancybox="group4"><img src="img/thumb_skill_01.png" alt="skill-01"></a>
+                            <div class="muuri-item likes" data-category="likes">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-likes" data-target="likes-03">
+                                        <div class="muuri-item-title">
+                                            <h2>MUSIC</h2>
+                                            <p>音楽</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/likes_03.png" alt="好きなもの" width="70px" height="70px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_02.jpg" data-fancybox="group4"><img src="img/thumb_skill_02.png" alt="skill-02"></a>
+                            </div>
+                                
+                            <div class="muuri-item likes" data-category="likes">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-likes" data-target="likes-04">
+                                        <div class="muuri-item-title">
+                                            <h2>ANIMAL</h2>
+                                            <p>動物</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/likes_04.png" alt="好きなもの" width="80px" height="80px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_03.jpg" data-fancybox="group4"><img src="img/thumb_skill_03.png" alt="skill-03"></a>
+                            </div>
+
+                            <!-- 
+                            ====================
+                            サムネイル > IMPORTANT
+                            ====================
+                            -->
+
+                            <div class="muuri-item important" data-category="important">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-important" data-target="important-01">
+                                        <div class="muuri-item-title">
+                                            <h2>PLAYFULNESS</h2>
+                                            <p>遊びゴコロ</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/important_01.png" alt="大事にしている価値観" width="50px" height="50px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_04.jpg" data-fancybox="group4"><img src="img/thumb_skill_04.png" alt="skill-04"></a>
+                            </div>
+
+                            <div class="muuri-item important" data-category="important">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-important" data-target="important-02">
+                                        <div class="muuri-item-title">
+                                            <h2>ABSORPTION</h2>
+                                            <p>きゅうしゅう</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/important_02.png" alt="大事にしている価値観" width="70px" height="70px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_05.jpg" data-fancybox="group4"><img src="img/thumb_skill_05.png" alt="skill-05"></a>
+                            </div>
+
+                            <div class="muuri-item important" data-category="important">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-important" data-target="important-03">
+                                        <div class="muuri-item-title">
+                                            <h2>CHARENGE</h2>
+                                            <p>チャレンジ</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/important_03.png" alt="大事にしている価値観" width="50px" height="50px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_06.jpg" data-fancybox="group4"><img src="img/thumb_skill_06.png" alt="skill-06"></a>
+                            </div>
+
+                            <div class="muuri-item important" data-category="important">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-important" data-target="important-04">
+                                        <div class="muuri-item-title">
+                                            <h2>COMMITMENT</h2>
+                                            <p>こだわり</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/important_04.png" alt="大事にしている価値観" width="60px" height="60px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_07.jpg" data-fancybox="group4"><img src="img/thumb_skill_07.png" alt="skill-07"></a>
+                            </div>
+
+                            <!-- 
+                            ====================
+                            サムネイル > SKILL
+                            ====================
+                            -->
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-01">
+                                        <div class="muuri-item-title">
+                                            <h2>Photoshop</h2>
+                                            <p>フォトショップ</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_01.png" alt="Photoshop" width="50px" height="50px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_08.jpg" data-fancybox="group4"><img src="img/thumb_skill_08.png" alt="skill-08"></a>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-02">
+                                        <div class="muuri-item-title">
+                                            <h2>Illustrator</h2>
+                                            <p>イラストレーター</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_02.png" alt="Illustrator" width="50px" height="50px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                            <li class="item sort03 item04" style="display: none;">
-                                <div class="item-content">
-                                    <a href="img/skill_09.jpg" data-fancybox="group4"><img src="img/thumb_skill_09.png" alt="skill-09"></a>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-03">
+                                        <div class="muuri-item-title">
+                                            <h2>InDesign</h2>
+                                            <p>インデザイン</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_03.png" alt="InDesign" width="50px" height="50px">
+                                        </div>
+                                    </a>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-04">
+                                        <div class="muuri-item-title">
+                                            <h2>XD</h2>
+                                            <p>エックスディー</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_04.png" alt="XD" width="50px" height="50px">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-05">
+                                        <div class="muuri-item-title">
+                                            <h2>Premiere Pro</h2>
+                                            <p>プレミアプロ</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_05.png" alt="Premiere Pro" width="50px" height="50px">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-06">
+                                        <div class="muuri-item-title">
+                                            <h2>After Effects</h2>
+                                            <p>アフターエフェクツ</p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_06.png" alt="After Effects" width="50px" height="50px">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-07">
+                                        <div class="muuri-item-title">
+                                            <h2>HTML</h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_07.png" alt="HTML" width="50px" height="50px">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-08">
+                                        <div class="muuri-item-title">
+                                            <h2>CSS</h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_08.png" alt="CSS" width="50px" height="50px">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item skill" data-category="skill">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb muuri-item-skill" data-target="skill-09">
+                                        <div class="muuri-item-title">
+                                            <h2>JavaScript</h2>
+                                            <p></p>
+                                        </div>
+                                        <div class="muuri-item-img">
+                                            <img src="img/skill_09.png" alt="JavaScript" width="50px" height="50px">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--
+                        ====================
+                        モーダルウィンドウ > PROFILE
+                        ====================
+                        -->
+
+                        <div id="profile" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>PROFILE</h2>
+                                    <p>プロフィール</p>
+                                </div>
+                                <div class="modal_content-subtitle">
+                                    <h3>maruyama asuka</h3>
+                                    <p>マルヤマ アスカ</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        1999年生まれ。大阪府出身。<br>
+                                        京都精華大学・芸術学部の洋画科を専攻し、現在は独学で制作技術を取得中です。
+                                    </p>
+                                </div>                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+
+                        <!--
+                        ====================
+                        モーダルウィンドウ > LIKES
+                        ====================
+                        -->
+
+                        <div id="likes-01" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>GAMES</h2>
+                                    <p>ゲーム</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        RPGやオープンワールド系のゲームが好きです。
+                                        中でも任天堂さんのゼルダの伝説シリーズが大好きで、
+                                        最新作のティアーズオブキングダムに感動しました・・・！
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="likes-02" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>MOVIES</h2>
+                                    <p>映画</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        しんみりしたドラマから迫力満点のアクションまでなんでも幅広く見ます。中でも是枝監督の作品が心にジーンと響くのでお気に入りです。
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="likes-03" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>MUSIC</h2>
+                                    <p>音楽</p>
+                                    
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        作業中にはゲームのBGMを聴いたり、流行りのJ-POPを聴きます。特にAdoさん、Vaundyさんが好きです。
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="likes-04" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>ANIMAL</h2>
+                                    <p>動物</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        幼少期に実家でマルチーズを飼っていたので犬が大好きです！今でも思い出の写真を見ながら癒されています🐶
+                                    </p>
+                                </div>
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <!--
+                        ====================
+                        モーダルウィンドウ > IMPORTANT
+                        ====================
+                        -->
+                        
+                        <div id="important-01" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>PLAYFULNESS</h2>
+                                    <p>遊びゴコロ</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        自身が楽しく制作することがより良い作品作りにつながる。
+                                        遊ぶような気持ちであれこれ考えながら作品に向き合う。
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="important-02" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>ABSORPTION</h2>
+                                    <p>きゅうしゅう</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        制作する前に新しい知識やアイデアをネットや本で学んで吸収し、学習する。
+                                        実際に売られている商品や他の方が作った制作物などをピックアップして参考にする。
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="important-03" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>CHARENGE</h2>
+                                    <p>チャレンジ</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        写真撮影、イラスト、グラフィックデザイン・・・
+                                        ジャンルに関わらず作りたい！と思ったものは
+                                        とりあえず手を動かして作ってみる。
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="important-04" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>COMMITMENT</h2>
+                                    <p>こだわり</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        自分なりのこだわりを持って作品に向き合い、完成後も納得のいくまでブラッシュアップを重ねる。
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <!--
+                        ====================
+                        モーダルウィンドウ > SKILL
+                        ====================
+                        -->
+
+                        <div id="skill-01" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>PHOTOSHOP</h2>
+                                    <p>フォトショップ</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -風景写真や人物写真のレタッチ・色調補正<br>
+                                        -画像の合成、コラージュ<br>
+                                        -ブラシを使用したイラストの作成
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-02" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>Illustrator</h2>
+                                    <p>イラストレーター</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -ポスターや名刺などのグラフィックデザイン<br>
+                                        -ベクターを使用したアイコンの作成
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-03" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>InDesign</h2>
+                                    <p>インデザイン</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -マスターページを使用したページ管理<br>
+                                        -文章や画像の挿入
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-04" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>XD</h2>
+                                    <p>エックスディー</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -デザインカンプの作成
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-05" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title modal_content-title-02">
+                                    <h2>Premiere Pro</h2>
+                                    <p>プレミアプロ</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -ビデオクリップの編集、タイトルやテロップの挿入<br>
+                                        -オーディオ、アニメーションの編集
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-06" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title modal_content-title-02">
+                                    <h2>After Effects</h2>
+                                    <p>アフターエフェクツ</p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -アニメーションの編集<br>
+                                        -エフェクトの作成
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-07" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>HTML</h2>
+                                    <p></p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -デザインカンプを元にしたコーディング
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-08" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>CSS</h2>
+                                    <p></p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -装飾のためのコーディング<br>
+                                        -レスポンシブの対応
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
+
+                        <div id="skill-09" class="modal">
+                            <div class="modal_bg"></div>
+                            <div class="modal_content">
+                                <div class="modal_content-title">
+                                    <h2>JavaScript</h2>
+                                    <p></p>
+                                </div>
+                                <div class="modal_content-text">
+                                    <p>
+                                        -jQueryなどのJavaScriptライブラリ
+                                        を使用した動きの実装
+                                    </p>
+                                </div>
+                                
+                            </div>
+                            <a href="" class="modal_close"></a>
+                        </div>
 
                     </div>
                 </div>
@@ -247,3 +798,4 @@
         </div>
 	</body>
 </html>
+
