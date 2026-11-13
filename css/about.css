@@ -35,10 +35,10 @@ body.appear .splashbg{
 	left: 0;
     transform: scaleY(0);
     background-color: var(--accent-color);
-	animation-name:PageAnime;
-	animation-duration:1s;
-	animation-timing-function:ease-in-out;
-	animation-fill-mode:forwards;
+	animation-name: PageAnime;
+	animation-duration: 1s;
+	animation-timing-function: ease-in-out;
+	animation-fill-mode: forwards;
 }
 @keyframes PageAnime{
 	0% {
@@ -65,7 +65,7 @@ body.appear .splashbg{
 /* bodyにappearクラスがついたら出現 */
 body.appear #container{
 	animation-name:PageAnimeAppear;
-	animation-duration:1s;
+	animation-duration: 1s;
 	animation-delay: 0.8s;
 	animation-fill-mode:forwards;
 	opacity: 0;
@@ -89,29 +89,65 @@ SIDE BOTTUN
     background-image: url("../common/img/banner_06.png");
 }
 
+
 /* ================================================================
-MAIN
+GALLERY
 =================================================================== */
-.contents {
-	width: 100%;
+.gallery-container {
+	width: 60vw;
+	height: 82vh;
+	position: relative;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0 150px;
+	margin-bottom: 80px;
+}
+.gallery-grid {
+	width: 60vw;
 	height: auto;
-	padding: 2rem 10rem;
-} 
-.sort {
+	position: relative;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.gallery-grid.col-1 .muuri-item {
 	width: 100%;
-	height: auto;
+}
+.gallery-grid.col-1 .muuri-item-content {
+	height: 540px;
+}
+.gallery-grid.col-2 .muuri-item {
+	width: 50%;
+}
+.gallery-grid.col-2 .muuri-item-content {
+	height: 260px;
+}
+.gallery-grid.col-3 .muuri-item {
+	width: 33%;
+}
+.gallery-grid.col-3 .muuri-item-content {
+	height: 170px;
 }
 
 /*---------------------
 並び替えボタンのCSS
 -----------------------*/
-.sort-btn{
+.filter-container {
+	width: 60vw;
+	height: 18vh;
 	display: flex;
 	justify-content: center;
-	width: 100%;
-	height: auto;
+	align-items: center;
 }
-.sort-btn li {
+.filter-buttons {
+	display: flex;
+}
+.filter-buttons li button {
 	background-color: var(--base-color);
     list-style: none;
 	border-radius: 10rem;
@@ -121,104 +157,324 @@ MAIN
 	margin: 0 1rem;
 	font: var(--main-font);
     font-size: 0.8rem;
+	letter-spacing: 0.2rem;
 }
-.sort-btn li:hover {
+.filter-buttons li button:hover {
     background-color: var(--accent-color);
 	border: 1px solid var(--accent-color);
 	color: var(--base-color);
     transition: all .3s;
 }
-.sort-btn li.active{
-	/*ボタンに現在地＝activeというクラス名がついたら背景色を変更*/
+.filter-buttons li button.active{
 	background-color: var(--accent-color);
 	border: 1px solid var(--accent-color);
     color: var(--base-color);
 }
 
-/*----------------------
-横幅が480px以下になった際の指定
-------------------------*/
-@media only screen and (max-width: 480px) {
-	.contents {
-		width: 100%;
-		height: 50vh;
-		padding: 0 1.5rem;
-	}
-    .sort-btn{
-		width: 100%;
-		height: auto;
-		padding: 2rem;
-		justify-content: space-between;
-    }
-    .sort-btn li{
-        width: auto;
-        margin: 0;
-        text-align: center;
-		padding: 0.3rem 1rem;
-    }
+
+/* ================================================================
+THUMBNAIL
+=================================================================== */
+.muuri-item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	display: block;
+	padding: 8px;
+}
+.muuri-item.muuri-hidden {
+    display: none;
+}
+/* フォント設定 */
+.muuri-item-title {
+	font: var(--main-font);
+	color: var(--main-color);
+	text-align: center;
+}
+.muuri-item-title p {
+	font: var(--main-font);
 }
 
-/*----------------------
-Muuriのレイアウトのための調整 
--------------------------*/
-.grid {
-    position: relative;
+/* ---------------------
+COMMON
+--------------------- */
+.muuri-item-content {
+	position: relative;
+	top: 0;
+    left: 0;
 }
-.item {
-    display: block;
-    position: absolute;
-    padding: 1rem;
-    z-index: 1;
-}
-.item01 {
-	width: 100%;
-}
-.item02, .item03 {
-	width: 50%;
-}
-.item04 {
-	width: 33%;
-}
-
-.item-content {
-	/*内側のボックスの高さが崩れないように維持*/
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-.grid img{
-	width:100%;
-	/*画像の横幅を100%にしてレスポンシブ化*/
-	height: auto;
-	vertical-align: bottom;
-}
-.grid img:hover {
-	transition: all .3s;
+.muuri-item :hover .muuri-item-thumb {
 	transform: scale(1.1);
 }
-
-/*---------------------
-横幅が768px以下になった際の指定
------------------------*/
-@media only screen and (max-width: 768px) {
-	.item {
-		padding: 0.5rem;
-	}
-	/* .item01 .item-content img {
-		width: 80%;
-	}
-	.item02 .item-content img {
-		width: 80%;
-	} */
+.muuri-item-thumb {
+	position: absolute;
+	top: 0;
+    left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	object-fit: cover;
+	border: 5px solid var(--accent-color);
+	background-color: var(--base-color);
+	border-radius: 20px;
 }
 
-/*--------------------
-fancyboxサムネイル背景と画像選択時の枠線の指定
----------------------*/
-.fancybox-thumbs {
-    background: transparent!important;
+/* ---------------------
+PROFILE
+--------------------- */
+.muuri-item-profile .muuri-item-title {
+	position: relative;
+	margin-bottom: 100px;
+}
+.muuri-item-profile .muuri-item-title::after {
+	content: '';
+	position: absolute;
+	top: 150%;
+	left: 50%;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--accent-color);
+}
+.muuri-item-profile .muuri-item-title h2 {
+	font-size: 3.5rem;
+	font-weight: 300;
+	letter-spacing: 15px;
+}
+.muuri-item-profile .muuri-item-title p {
+	font-size: 1rem;
+	letter-spacing: 10px;
 }
 
-.fancybox-thumbs__list a:before {
-    border: 6px solid #FA999B;
+/* ---------------------
+LIKES
+--------------------- */
+.muuri-item-likes .muuri-item-title {
+	position: relative;
+	margin-bottom: 50px;
 }
+.muuri-item-likes .muuri-item-title::after {
+	content: '';
+	position: absolute;
+	top: 150%;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--accent-color);
+}
+.muuri-item-likes .muuri-item-title h2 {
+	font-size: 1.2rem;
+	letter-spacing: 10px;
+}
+.muuri-item-likes .muuri-item-title p {
+	font-size: 1rem;
+}
+
+/* ---------------------
+IMPORTANT
+--------------------- */
+.muuri-item-important .muuri-item-title {
+	position: relative;
+	margin-bottom: 50px;
+}
+.muuri-item-important .muuri-item-title::after {
+	content: '';
+	position: absolute;
+	top: 150%;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--accent-color);
+}
+.muuri-item-important .muuri-item-title h2 {
+	font-size: 1.2rem;
+	letter-spacing: 10px;
+}
+.muuri-item-important .muuri-item-title p {
+	font-size: 1rem;
+}
+
+/* ---------------------
+SKILL
+--------------------- */
+.muuri-item-skill .muuri-item-title {
+	position: relative;
+	margin-bottom: 40px;
+}
+.muuri-item-skill .muuri-item-title::after {
+	content: '';
+	position: absolute;
+	top: 150%;
+	left: 50%;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	transform: translate(-50%, -50%);
+	background-color: var(--accent-color);
+}
+.muuri-item-skill .muuri-item-title h2 {
+	font-size: 0.9rem;
+	letter-spacing: 5px;
+	white-space: nowrap;
+}
+.muuri-item-skill .muuri-item-title p {
+	font-size: 0.6rem;
+}
+
+/* ================================================================
+MODAL WINDOW
+=================================================================== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60vw;
+  height: 100vh;
+  z-index: 10;
+}
+.modal_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* ---------------------
+モーダルウィンドウが開いた後の画面
+--------------------- */
+.modal_content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 50px;
+  border: 5px solid var(--accent-color);
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+/* ---------------------
+タイトル部分
+--------------------- */
+.modal_content-title {
+	position: relative;
+	color: var(--accent-color);
+	text-align: center;
+	margin-bottom: 60px;
+}
+.modal_content-title h2 {
+	font: var(--main-font);
+	font-size: 3rem;
+	letter-spacing: 10px;
+}
+.modal_content-title p {
+	font: var(--main-font);
+	font-size: 1rem;
+	letter-spacing: 5px;
+}
+.modal_content-title::before {
+	content: '';
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: var(--accent-color);
+	position: absolute;
+	top: 150%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* ---------------------
+タイトル部分:はみ出している部分
+--------------------- */
+.modal_content-title-02 h2 {
+	font-size: 2rem;
+	white-space: nowrap;
+}
+
+/* サブタイトル */
+.modal_content-subtitle {
+	margin: 10px 0;
+	text-align: center;
+}
+.modal_content-subtitle h3 {
+	font: var(--main-font);
+	font-size: 2rem;
+	letter-spacing: 5px;
+}
+.modal_content-subtitle p {
+	font: var(--main-font);
+	font-size: 1rem;
+	letter-spacing: 5px;
+}
+
+/* ---------------------
+テキスト部分
+--------------------- */
+.modal_content-text {
+	margin: 20px;
+}
+.modal_content-text p {
+	font-size: 0.8rem;
+}
+
+/* ---------------------
+モダールウィンドウの閉じるボタン
+--------------------- */
+.modal_close {
+	position: relative;
+	z-index: 10;
+	top: 40px;
+	left: 50vw;
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	background-color: var(--accent-color);
+	border-radius: 50%;
+	cursor: pointer;
+	transition: all 0.3s;
+  
+}
+.modal_close:hover {
+	background-color: var(--main-color);
+}
+.modal_close::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+.modal_close::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 2px;
+	background-color: #fff;
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
