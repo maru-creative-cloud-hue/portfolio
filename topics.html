@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
     <head>
-        <meta name="UTF-8">
+        <meta charset="UTF-8">
         <title>TOPICS - MARUYAMA's PORTFOLIO</title>
         <meta name="description" content="maruyama's portfolio">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS ======================================== -->
 		<!--リセットcss-->
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
         <!--Googleフォント-->
@@ -14,14 +15,12 @@
         <!--自作のcss-->
         <link rel="stylesheet" href="common/css/common.css">
 		<link rel="stylesheet" href="css/topics.css">
+        <!-- JS ======================================== -->
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous" defer></script>
-        <!--slick-->
-        <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js" defer></script>
-        <!-- multiscroll -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/multiscroll.js/0.2.2/jquery.multiscroll.min.js" defer></script>
-        <!-- jQuery.easing -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" defer></script>
+        <!-- Web Animations API & Muuri の CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/web-animations-js@2.3.2/web-animations.min.js" defer></script>
+        <script src="https://cdn.jsdelivr.net/npm/muuri@0.9.5/dist/muuri.min.js" defer></script>
         <!--font awesome-->
         <script src="https://kit.fontawesome.com/e63ff7a4be.js" crossorigin="anonymous" defer></script>
         <!--Adobeフォント-->
@@ -64,18 +63,44 @@
 
                 <!-- menuボタン -->
                 <div class="header-menu">
-                    <div class="header-open">
+                    <a class="header-open">
                         <span></span>
                         <span></span>
-                    </div>
+                    </a>
                     <nav id="header-nav">
                         <div class="header-nav-list">
                             <ul>
-                                <li><a href="index.html">home</a></li>
-                                <li><a href="topics.html" class="current">topics</a></li>
-                                <li><a href="about.html">about</a></li>
-                                <li><a href="works.html">works</a></li>
-                                <li><a href="contact.html">contact</a></li>
+                                <li>
+                                    <a href="index.html">
+                                        <p class="header-nav-list-en">home</p>
+                                        <p class="header-nav-list-jp">ホーム</p>
+                                    </a>
+                                </li>
+                                
+                                <li>
+                                    <a href="topics.html" class="current">
+                                        <p class="header-nav-list-en">topics</p>
+                                        <p class="header-nav-list-jp">トピックス</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="about.html">
+                                        <p class="header-nav-list-en">about</p>
+                                        <p class="header-nav-list-jp">私について</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="works.html">
+                                        <p class="header-nav-list-en">works</p>
+                                        <p class="header-nav-list-jp">制作実績</p>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="contact.html">
+                                        <p class="header-nav-list-en">contact</p>
+                                        <p class="header-nav-list-jp">お問い合わせ</p>
+                                    </a>
+                                </li>
                             </ul>
                             
                             <!-- モバイル版のみに対応 -->
@@ -126,21 +151,99 @@
                     </div>
 
                     <!-- ここからデスクトップ画面用 -->
-                    <div class="left-container">
-                        <ul>
-                            <li>
-                                <a href="topics/post_01.html">
-                                    <h2>ポートフォリオサイトを公開しました</h2>
-                                    <p><small>2026/05/16</small></p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="topics/post_02.html">
-                                    <h2>X ・ Instagramを開設しました</h2>
-                                    <p><small>2026/07/05</small></p>
-                                </a>
-                            </li>
-                        </ul> 
+
+                    <!-- 
+                    ====================
+                    選別ボタン 
+                    ====================
+                    -->
+
+                    <div class="filter-container">
+                        <ul class="filter-buttons">
+                            <li><button class="filter-btn active" data-filter="*">ALL</button></li>
+                            <li><button class="filter-btn" data-filter=".news">NEWS</button></li>
+                            <li><button class="filter-btn" data-filter=".works">WORKS</button></li>
+                            <li><button class="filter-btn" data-filter=".media">MEDIA</button></li>
+                        </ul>
+                    </div>
+
+                    <!-- 
+                    ====================
+                    ギャラリー
+                    ====================
+                    -->
+
+                    <div class="gallery-container">
+
+                        <div class="gallery-grid">
+
+                            <div class="muuri-item news" data-category="news">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb" data-target="topics-01">
+                                        <div class="muuri-item-title">
+                                            <p><small> 2026/05/16</small></p>
+                                            <h2>ポートフォリオサイトを<br>公開しました</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="muuri-item media" data-category="media">
+                                <div class="muuri-item-content">
+                                    <a href="#" class="muuri-item-thumb" data-target="topics-02">
+                                        <div class="muuri-item-title">
+                                            <p><small> 2026/07/05</small></p>
+                                            <h2>X ・ Instagramを<br>開設しました</h2>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+
+
+                    <!-- 
+                    ====================
+                    モーダルウィンドウ
+                    ====================
+                    -->
+
+                    <div id="topics-01" class="modal">
+                        <div class="modal_bg"></div>
+                        <div class="modal_content">
+                            <div class="modal_content-title">
+                                <h2>ポートフォリオサイトを公開しました
+                                </h2>
+                                <p><small>- 2026/05/16</small></p>
+                            </div>
+                            <div class="modal_content-description">
+                                <p>
+                                    この度、自身の作品を掲載したポートフォリオサイトを公開しました！<br>
+                                    制作した作品などを随時載せていきます。<br>
+                                    どうぞ楽しんでいってください。
+                                </p>
+                            </div>
+                        </div>
+                        <a href="" class="modal_close"></a>
+                    </div>
+
+                    <div id="topics-02" class="modal">
+                        <div class="modal_bg"></div>
+                        <div class="modal_content">
+                            <div class="modal_content-title">
+                                <h2>X ・ Instagramを開設しました</h2>
+                                <p><small>- 2026/07/05</small></p>
+                            </div>
+                            <div class="modal_content-description">
+                                <p>
+                                    X ・ Instagramの個人用アカウントを開設しました!<br>
+                                    制作に関する情報や個人の趣味などを随時更新していきますので、
+                                    よければフォローをお願いいたします🐶
+                                </p>
+                            </div>
+                        </div>
+                        <a href="" class="modal_close"></a>
                     </div>
 
                 </div>
