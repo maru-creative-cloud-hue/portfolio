@@ -161,6 +161,7 @@ THUMBNAIL
     width: 30%;
     margin: 8px;
     z-index: 1;
+	background-color: var(--base-color);
 }
 .muuri-item.muuri-hidden {
     display: none;
@@ -182,7 +183,6 @@ THUMBNAIL
 	align-items: center;
 	object-fit: cover;
 	border-radius: 20px;
-	background-color: var(--base-color);
 }
 /* サムネイルをホバーした時に拡大して表示 */
 .muuri-item:hover .muuri-item-thumb {
