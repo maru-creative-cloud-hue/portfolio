@@ -182,6 +182,7 @@ THUMBNAIL
 	align-items: center;
 	object-fit: cover;
 	border-radius: 20px;
+	background-color: var(--main-color);
 }
 /* サムネイルをホバーした時に拡大して表示 */
 .muuri-item:hover .muuri-item-thumb {
