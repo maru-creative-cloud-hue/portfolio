@@ -161,7 +161,6 @@ THUMBNAIL
     width: 30%;
     margin: 8px;
     z-index: 1;
-	background-color: var(--base-color);
 }
 .muuri-item.muuri-hidden {
     display: none;
